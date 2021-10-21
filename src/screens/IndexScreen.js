@@ -1,39 +1,27 @@
-import React, { useContext } from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import BlogContext from "../context/BlogContext";
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
+import BlogContext from '../context/BlogContext';
 
-const IndexScreen = ({ navigation }) => {
+const IndexScreen = () => {
+    const { data, addBlogPost } = useContext(BlogContext);
 
-    const value = useContext(BlogContext);
+    return (
+        <View>
+            <Text>Index Screen</Text>
 
-    console.log("data");
+            <Button title="Add Post" onPress={addBlogPost} />
 
-    return <View>
-
-        <Button title='Add Post' onPress={() => { value.addBlogPosts() }}></Button>
-
-        <FlatList
-            keyExtractor={(item, index) => item.title}
-            data={value.data}
-            renderItem={({ item, index }) => {
-                return (
-                    <View>
-                        <Text>
-                            {item.title}
-                        </Text>
-                    </View>
-                );
-            }}
-        />
-
-        <Button title='See Posts' onPress={() => { navigation.push('Index') }}></Button>
-
-    </View>
+            <FlatList
+                data={data}
+                keyExtractor={blogPost => blogPost.title}
+                renderItem={({ item }) => {
+                    return <Text>{item.title}</Text>;
+                }}
+            />
+        </View>
+    );
 };
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 export default IndexScreen;
