@@ -4,48 +4,34 @@ import { Context } from '../context/BlogContext';
 import { EvilIcons } from '@expo/vector-icons';
 
 const ShowScreen = ({ navigation }) => {
-    const { state, addBlogPost, deleteBlogPost, updateBlogPost } = useContext(Context);
-    const id = navigation.getParam('id')
+  const { state } = useContext(Context);
 
-    function currentBlog() {
-        return state.find(data => data.id === id)
-    }
+  const blogPost = state.find(
+    (blogPost) => blogPost.id === navigation.getParam('id')
+  );
 
-    return (
-        <View>
-            <Text>{currentBlog().title}</Text>
-        </View>
-    );
+  return (
+    <View>
+      <Text>{blogPost.title}</Text>
+      <Text>{blogPost.content}</Text>
+    </View>
+  );
 };
 
 ShowScreen.navigationOptions = ({ navigation }) => {
-    return {
-        headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
-                <EvilIcons name="pencil" size={35} />
-            </TouchableOpacity>
-        ),
-    };
+  return {
+    headerRight: () => (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Edit', { id: navigation.getParam('id') })
+        }
+      >
+        <EvilIcons name="pencil" size={35} />
+      </TouchableOpacity>
+    ),
+  };
 };
 
-const styles = StyleSheet.create({
-
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderBottomWidth: 1,
-        borderTopWidth: 1,
-        borderColor: 'gray'
-    },
-
-    contentContainer: {
-        paddingHorizontal: 20
-    },
-
-    rowSeperator: {
-        height: 10,
-        backgroundColor: 'lightgray'
-    }
-});
+const styles = StyleSheet.create({});
 
 export default ShowScreen;
