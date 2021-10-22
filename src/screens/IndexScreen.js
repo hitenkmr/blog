@@ -36,7 +36,10 @@ const styles = StyleSheet.create({
 
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        borderBottomWidth:1,
+        borderTopWidth:1,
+        borderColor:'gray'
     },
 
     contentContainer: {
