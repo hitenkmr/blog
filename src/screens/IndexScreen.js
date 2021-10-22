@@ -20,7 +20,7 @@ const IndexScreen = () => {
                 keyExtractor={blogPost => blogPost.title}
                 renderItem={({ item }) => {
                     return (<View style={styles.container}>
-                        <Text>{item.title}</Text>
+                        <Text>{item.title} - {item.id}</Text>
                         <TouchableOpacity onPress={() => {}}>
                             <AntDesign name="delete" size={24} color="black" />
                         </TouchableOpacity>
