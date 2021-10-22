@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const IndexScreen = () => {
-    const { state, addBlogPost } = useContext(Context);
+    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
     return (
         <View>
@@ -21,7 +21,7 @@ const IndexScreen = () => {
                 renderItem={({ item }) => {
                     return (<View style={styles.container}>
                         <Text>{item.title} - {item.id}</Text>
-                        <TouchableOpacity onPress={() => {}}>
+                        <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                             <AntDesign name="delete" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
