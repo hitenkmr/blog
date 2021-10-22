@@ -4,7 +4,7 @@ import { Context } from '../context/BlogContext';
 import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const IndexScreen = () => {
+const IndexScreen = ({navigation}) => {
     const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
     return (
@@ -19,12 +19,17 @@ const IndexScreen = () => {
                 data={state}
                 keyExtractor={blogPost => blogPost.title}
                 renderItem={({ item }) => {
-                    return (<View style={styles.container}>
-                        <Text>{item.title} - {item.id}</Text>
-                        <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                            <AntDesign name="delete" size={24} color="black" />
+                    return (
+                        <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+
+                            <View style={styles.container}>
+                                <Text>{item.title} - {item.id}</Text>
+                                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                                    <AntDesign name="delete" size={24} color="black" />
+                                </TouchableOpacity>
+                            </View>
+
                         </TouchableOpacity>
-                    </View>
                     );
                 }}
             />
