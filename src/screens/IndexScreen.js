@@ -33,7 +33,7 @@ const IndexScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <Text style={styles.title}>
-                  {item.title} - {item.id}
+                  {item.id} - {item.title}
                 </Text>
                 <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                   <Feather style={styles.icon} name="trash" />
